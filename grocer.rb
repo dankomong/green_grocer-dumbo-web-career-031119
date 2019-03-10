@@ -32,6 +32,7 @@ def apply_coupons(cart, coupons)
           else 
             new_obj[food + " W/COUPON"][:count] += 1
           end
+        end
         new_obj[food][:count] -= coupon[:num]
         if !new_obj[food + " W/COUPON"]
           new_obj[food + " W/COUPON"] = {:price => coupon[:cost], :clearance => new_obj[food][:clearance], :count => 1}
