@@ -24,6 +24,7 @@ def apply_coupons(cart, coupons)
     new_obj[food] = info
     coupons.each do |coupon|
       if coupon[:item] == food
+<<<<<<< HEAD
         # checking if the original count is greater than the coupon count bc if it was smaller then obv the coupon can't be applied
         if new_obj[food][:count] > coupon[:num]
           new_obj[food][:count] -= coupon[:num]
@@ -32,6 +33,13 @@ def apply_coupons(cart, coupons)
           else 
             new_obj[food + " W/COUPON"][:count] += 1
           end
+=======
+        new_obj[food][:count] -= coupon[:num]
+        if !new_obj[food + " W/COUPON"]
+          new_obj[food + " W/COUPON"] = {:price => coupon[:cost], :clearance => new_obj[food][:clearance], :count => 1}
+        else 
+          new_obj[food + " W/COUPON"][:count] += 1
+>>>>>>> 9a0d7f8e28d37864972466b3cb6f96fd338a49f7
         end
       end      
     end
@@ -44,10 +52,17 @@ def apply_clearance(cart)
   new_obj = {}
   cart.each do |food, info|
     info.each do |deet, val|
+<<<<<<< HEAD
       new_obj[food] ||= {}
       new_obj[food] = info
       if deet == :clearance && val == true 
         new_obj[food][:price] = (new_obj[food][:price] * 0.80).round(2)
+=======
+      if deet == :clearance && val == true 
+        new_obj[food] = info
+        new_obj[food][:price] *= 0.80
+        new_obj[food][:price].round(2)
+>>>>>>> 9a0d7f8e28d37864972466b3cb6f96fd338a49f7
       end
     end
   end
@@ -55,6 +70,7 @@ def apply_clearance(cart)
 end
 
 def checkout(cart, coupons)
+<<<<<<< HEAD
   # code here.
   total = 0.0
   new_cart = consolidate_cart(cart)
@@ -72,4 +88,9 @@ def checkout(cart, coupons)
     return total
   end
 
+=======
+  # code here
+  sum = consolidate_cart + apply_coupons + apply_clearance
+  sum
+>>>>>>> 9a0d7f8e28d37864972466b3cb6f96fd338a49f7
 end
