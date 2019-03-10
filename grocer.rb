@@ -79,8 +79,5 @@ def checkout(cart, coupons)
   else 
     return total
   end
-  # code here
-  sum = consolidate_cart + apply_coupons + apply_clearance
-  sum
 
 end
